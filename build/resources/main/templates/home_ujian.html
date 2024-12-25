@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exam Dashboard</title>
+    <link th:href="@{/main.css}" rel="stylesheet"/>
+</head>
+<body class="bg-gray-100">
+
+<nav class="bg-blue-600 p-4">
+    <div class="container mx-auto flex justify-between items-center">
+        <h1 class="text-white text-2xl font-bold">Garuda CBT</h1>
+        <div class="text-white">
+            <span>Selamat Datang, <b th:text="${username}">Siswa</b></span>
+        </div>
+    </div>
+</nav>
+
+<div class="container mx-auto mt-8 p-4">
+    <h2 class="text-xl font-semibold mb-4">Ujian Kamu</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <a th:each="exam : ${exams}" th:href="'/ujian'" class="block bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+            <h3 class="text-lg font-semibold text-gray-800" th:text="${exam.title}">Mata Pelajaran</h3>
+            <p class="text-sm text-gray-600" th:text="'Date: ' + ${exam.date}">Date: YYYY-MM-DD</p>
+            <p class="text-sm" th:classappend="${exam.status == 'Upcoming' ? 'text-blue-500' : 'text-green-500'}"
+               th:text="${exam.status}">Status</p>
+        </a>
+    </div>
+</div>
+
+
+<footer class="bg-gray-800 text-white p-4 mt-8">
+    <div class="container mx-auto text-center">
+        <p>&copy; 2024 SMPN 49. All Rights Reserved.</p>
+    </div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Halaman Ujian</title>
+    <link th:href="@{/main.css}" rel="stylesheet"/>
+</head>
+<body class="bg-gray-100">
+<!-- Header -->
+<nav class="bg-blue-600 p-4">
+    <div class="container mx-auto text-white">
+        <h1 class="text-2xl font-bold">Halaman Ujian</h1>
+
+    </div>
+</nav>
+
+<!-- Exam Content -->
+<div class="container mx-auto mt-8 p-4">
+    <form th:action="@{/exam}" method="post">
+        <div th:each="question, questionIndex : ${questions}" class="bg-white p-6 rounded-lg shadow-md mb-6">
+            <h2 class="text-xl font-semibold mb-4" th:text="'Question ' + (${questionIndex.index + 1}) + ': ' + ${question.question}"></h2>
+            <div th:each="option, optionIndex : ${question.options}" class="mb-4">
+                <label class="flex items-center">
+                    <input
+                            type="radio"
+                            th:name="'answer-' + ${questionIndex.index}"
+                            th:value="${option}"
+                            class="form-radio text-blue-600"
+                            required
+                    >
+                    <span class="ml-2 text-gray-700" th:text="${option}"></span>
+                </label>
+            </div>
+        </div>
+        <button
+                type="submit"
+                class="w-full px-4 py-2 mt-4 text-white bg-blue-600 rounded-lg hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300"
+        >
+            Submit
+        </button>
+    </form>
+</div>
+
+<!-- Footer -->
+<footer class="bg-gray-800 text-white p-4 mt-8">
+    <div class="container mx-auto text-center">
+        <p>&copy; 2024 SMPN 49 Jakarta. All Rights Reserved.</p>
+    </div>
+</footer>
+</body>
+</html>

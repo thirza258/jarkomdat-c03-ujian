@@ -1,0 +1,14 @@
+spring:
+  main:
+    allow-circular-references: true
+  profiles:
+    active: 'dev'
+  jpa:
+    properties:
+      hibernate:
+        jdbc:
+          lob:
+            nan_contextual_creation: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: create
