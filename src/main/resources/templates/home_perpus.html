@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home Perpus</title>
+    <link th:href="@{/main.css}" rel="stylesheet"/>
+</head>
+<body class="bg-gray-100">
+<!-- Navigation Bar -->
+<nav class="bg-green-600 p-4">
+    <div class="container mx-auto flex justify-between items-center">
+        <h1 class="text-white text-2xl font-bold">Library Dashboard</h1>
+        <div class="text-white">
+            <span>Welcome, <b th:text="${username}">Perpus User</b></span>
+        </div>
+    </div>
+</nav>
+
+<!-- Dashboard Content -->
+<div class="container mx-auto mt-8 p-4">
+    <h2 class="text-xl font-semibold mb-4">Buku Dipinjam</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div th:each="book : ${books}" class="bg-white p-4 rounded-lg shadow-md">
+            <h3 class="text-lg font-semibold text-gray-800" th:text="${book.title}">Book Title</h3>
+            <p class="text-sm text-gray-600" th:text="'Due Date: ' + ${book.dueDate}">Due Date: YYYY-MM-DD</p>
+            <p class="text-sm font-medium"
+               th:classappend="${book.status == 'Overdue' ? 'text-red-500' : (book.status == 'Due Soon' ? 'text-yellow-500' : 'text-green-500')}"
+               th:text="${book.status}">Status</p>
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="bg-gray-800 text-white p-4 mt-8">
+    <div class="container mx-auto text-center">
+        <p>&copy; 2024 Library Dashboard. All Rights Reserved.</p>
+    </div>
+</footer>
+</body>
+</html>
